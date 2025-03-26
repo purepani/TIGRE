@@ -1,0 +1,6 @@
+name: cuda
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.10
+  - cudatoolkit-dev=11.7.0
