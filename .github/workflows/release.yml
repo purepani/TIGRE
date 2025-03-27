@@ -25,5 +25,9 @@ jobs:
           enable-cache: true
       - name: Build wheel 
         run: uv build
-      - name: Publish wheel 
+      - name: Validate Version
+        run: |
+          export PYPROJECT_VERSION=v$(uvx --from=toml-cli toml get --toml-path=pyproject.toml project.version)
+      - if: env.PYPROJECT_VERSION==${{ github.ref_name }}
+        name: Publish wheel 
         run: uv publish --trusted-publishing always
